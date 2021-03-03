@@ -1,6 +1,8 @@
 {
   "name": "imagequiz",
   "homepage": "http://Samantha1Mathis.github.io/imagequiz",
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build", 
   "version": "0.1.0",
   "private": true,
   "dependencies": {
