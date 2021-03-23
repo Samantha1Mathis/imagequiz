@@ -33,7 +33,7 @@ export default function QuizQuestions(props) {
                         </Col>
 
                         <Col>
-                            <Card.Title>Which flower shown above?</Card.Title>
+                            <Card.Title>Which flower is shown?</Card.Title>
                             <Row>
                             <Button variant="outline-primary" disabled={buttonToggle} id={0} onClick={onAnswer} > {quizzes[props.quiz][props.question].choices[0]}</Button>
                             </Row>
