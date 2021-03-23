@@ -1,36 +1,47 @@
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button'
-import {useHistory} from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import { useHistory } from 'react-router-dom';
+import { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
 
-
-function Login(){
+export default function Login(props) {
     const history = useHistory();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
-    let onLogin = () =>
-        history.push('/home');
-        
+    function onLoginSubmitted(){
+        if (email.trim().length === 0 || password.trim().length === 0) {
+            return;
+        }
+        props.onLoggedIn(email);
+        history.push('/');
+    }
+
+    function onEmailChanged(event){
+        setEmail(event.target.value);
+    }
+
+    function onPasswordChanged(event){
+        setPassword(event.target.value);
+    }
+
     return (
-        <Row><Col>
-            <Form onSubmit={onLogin}>
-                <Form.Group controlId="email">
-                    <Form.Label> Email Address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter Email"/>
+        <Form onSubmit={onLoginSubmitted}>
+            <Form.Group controlId="email">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control type="email" placeholder="Enter email" onChange={onEmailChanged} />
+            </Form.Group>
 
-                </Form.Group>
-                <Form.Group controlId="password">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Enter Password"/>
-                </Form.Group>
-                <Button variant="primary" type="submit" value="submit">
-                    Submit
-                </Button>
+            <Form.Group controlId="password">
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" placeholder="Password" onChange={onPasswordChanged} />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+                Submit
+      </Button>
+        </Form>
 
-            </Form>
-        
-        </Col></Row>
+
+
     );
 }
-
-export default Login;
