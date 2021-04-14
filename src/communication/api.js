@@ -9,13 +9,13 @@ let getFlowers = () =>{
     .then(response => response.json());
 };
 
-let addScores = (score) => {
+let addScores = (score, username, quizID) => {
     return fetch(apiHost + "/score", {
         method: 'post',
         header: {
             'Content-Type':'application/json'
         },
-        body: JSON.stringify(score)
+        body: JSON.stringify({score:score, username: username, quizID: quizID})
     });
 }
 let api = {

@@ -20,11 +20,13 @@ export default function Quiz(props) {
             lastScore = 1;
         }
 
-        if (answer >= 6){
-            let result = {score: score+lastScore};
+        if (count >= 6){
+            let result = {score: score+lastScore, username:props.username, quizId:props.quiz};
             api.addScores(result)
+            .then(() => console.log("score was posted to server successfully"))
             .catch(e => console.log(e));
         }
+
     }
 
     return (

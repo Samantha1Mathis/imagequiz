@@ -22,7 +22,7 @@ export default function QuizQuestions(props) {
     }
     useEffect(() => {
         if(quizzes.length === 0) {
-            api.getQuiz()
+            api.getQuizzes()
             .then(x => setQuiz(x))
             .catch(e => console.log(e));
         }

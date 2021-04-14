@@ -31,7 +31,7 @@ function App() {
                         <Login onLoggedIn={onLoggedIn} />
                     </Route>
                     <Route path="/quiz" >
-                        <Quiz quiz={quiz}/>
+                        <Quiz quiz={quiz} username={username}/>
                     </Route>
                 </Switch>
             </Container>
