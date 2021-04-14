@@ -3,7 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import QuizQuestions from './QuizQuestions';
 import { useState } from 'react';
-
+import api from '../communication/api';
 
 export default function Quiz(props) {
     const [score, setScore] = useState(0);
@@ -14,8 +14,16 @@ export default function Quiz(props) {
     }
     function onAnswer(answer) {
         setCount(count + 1);
+        let lastScore = 0;
         if (answer) {
             setScore(score + 1);
+            lastScore = 1;
+        }
+
+        if (answer >= 6){
+            let result = {score: score+lastScore};
+            api.addScores(result)
+            .catch(e => console.log(e));
         }
     }
 
