@@ -1,4 +1,5 @@
 let apiHost = "https://samantha1mathis-imagequiz.herokuapp.com"
+
 let getQuizzes = () =>{
     return fetch(apiHost + "/quizzes")
     .then(response => response.json());
