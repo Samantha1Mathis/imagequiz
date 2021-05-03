@@ -16,9 +16,9 @@ export default function Login(props) {
         }
         props.onLoggedIn(email);
         history.push('/');
-        console.log("hello????")
+        let username = email.split("@")[0];
        // let result = {username:props.username, email:email, password:password};
-            api.addCustomers(props.username, email, password)
+            api.addCustomers(username, email, password)
             .then(() => console.log("Customers was added successfully"))
             .catch(e => console.log(e));
 
