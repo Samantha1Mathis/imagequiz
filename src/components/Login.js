@@ -16,11 +16,11 @@ export default function Login(props) {
         }
         props.onLoggedIn(email);
         history.push('/');
+        
         let username = email.split("@")[0];
-       // let result = {username:props.username, email:email, password:password};
-            api.addCustomers(username, email, password)
-            .then(() => console.log("Customers was added successfully"))
-            .catch(e => console.log(e));
+        api.addCustomers(username, email, password)
+        .then(() => console.log("Customers was added successfully"))
+        .catch(e => console.log(e));
 
     }
 
