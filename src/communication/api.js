@@ -26,13 +26,9 @@ let getQuiz = (id) =>{
     .catch(e => console.log("There was an error getting the quiz"));
 }
 
-let getCustomers= () =>{
-    return fetch(apiHost + "/customers")
-    .then(response => response.json());
-};
 
 let addCustomers = (username, email, password) =>{
-    return fetch(apiHost + "/customers", {
+    return fetch(apiHost + "/customer", {
         method: 'post',
         header: {
             'Content-Type':'application/json'
@@ -46,7 +42,6 @@ let api = {
     getFlowers: getFlowers,
     addScores: addScores,
     addCustomers: addCustomers,
-    getCustomers: getCustomers,
     getQuiz: getQuiz
 };
 
