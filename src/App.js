@@ -6,6 +6,7 @@ import NavigationBar from "./components/NavigationBar";
 import { useState } from 'react';
 import Quiz from './components/Quiz';
 
+
 function App() {
     const [username, setUsername] = useState(localStorage.getItem('username') || '');
     const [quiz, setQuiz] = useState(localStorage.getItem('quizIndex') || 0);
@@ -15,10 +16,12 @@ function App() {
         setUsername(email);
     }
 
-    function onQuiz(quizIndex){
+    async function onQuiz(quizIndex){
         localStorage.setItem('quizIndex', quizIndex);
         setQuiz(quizIndex);
+
     }
+
     return (
         <HashRouter>
             <Container fluid>

@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
+import api from '../communication/api';
 
 export default function Login(props) {
     const history = useHistory();
@@ -15,6 +16,12 @@ export default function Login(props) {
         }
         props.onLoggedIn(email);
         history.push('/');
+        console.log("hello????")
+       // let result = {username:props.username, email:email, password:password};
+            api.addCustomers(props.username, email, password)
+            .then(() => console.log("Customers was added successfully"))
+            .catch(e => console.log(e));
+
     }
 
     function onEmailChanged(event){

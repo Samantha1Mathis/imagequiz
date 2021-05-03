@@ -2,12 +2,13 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import QuizQuestions from './QuizQuestions';
-import { useState } from 'react';
+import {useState, useEffect} from 'react';
 import api from '../communication/api';
 
 export default function Quiz(props) {
     const [score, setScore] = useState(0);
     const [count, setCount] = useState(1);
+    const [json, setJson] = useState([]);
 
     function onRestart(event){
         window.location.reload();
@@ -21,14 +22,23 @@ export default function Quiz(props) {
         }
 
         if (count >= 6){
-            let result = {score: score+lastScore, username:props.username, quizId:props.quiz};
-            api.addScores(result)
+            //let result = {score: score+lastScore, username:props.username, quizId:props.quiz};
+            api.addScores(score+lastScore, props.username, props.quiz)
             .then(() => console.log("score was posted to server successfully"))
             .catch(e => console.log(e));
         }
 
     }
 
+    useEffect(() => {
+        async function getJSON(){
+            await api.getQuiz(props.quiz)
+            .then(response => setJson(response))
+            .catch(e => console.log(e))
+        };
+        getJSON();}
+    );
+    
     return (
         <Col>
             <br></br>
@@ -42,22 +52,22 @@ export default function Quiz(props) {
             </Row>
             <br></br>
             <Row>
-                <QuizQuestions onAnswer={onAnswer} quiz={props.quiz} question={0} />
+                <QuizQuestions onAnswer={onAnswer} quiz={props.quiz} json={json} question={0} />
             </Row>
             <Row>
-                <QuizQuestions onAnswer={onAnswer} quiz={props.quiz} question={1} />
+                <QuizQuestions onAnswer={onAnswer} quiz={props.quiz} json={json} question={1} />
             </Row>
             <Row>
-                <QuizQuestions onAnswer={onAnswer} quiz={props.quiz} question={2} />
+                <QuizQuestions onAnswer={onAnswer} quiz={props.quiz} json={json} question={2} />
             </Row>
             <Row>
-                <QuizQuestions onAnswer={onAnswer} quiz={props.quiz} question={3} />
+                <QuizQuestions onAnswer={onAnswer} quiz={props.quiz} json={json} question={3} />
             </Row>
             <Row>
-                <QuizQuestions onAnswer={onAnswer} quiz={props.quiz} question={4} />
+                <QuizQuestions onAnswer={onAnswer} quiz={props.quiz} json={json} question={4} />
             </Row>
             <Row>
-                <QuizQuestions onAnswer={onAnswer} quiz={props.quiz} question={5} />
+                <QuizQuestions onAnswer={onAnswer} quiz={props.quiz} json={json} question={5} />
             </Row>
         </Col>
     );
