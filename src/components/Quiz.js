@@ -22,7 +22,8 @@ export default function Quiz(props) {
         }
 
         if (count >= 6){
-            api.addScores(score+lastScore, props.username, props.quiz)
+            let username = props.username.split("@")[0];
+            api.addScores(score+lastScore, username, props.quiz)
             .then(() => console.log("score was posted to server successfully"))
             .catch(e => console.log(e));
         }

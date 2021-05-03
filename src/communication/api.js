@@ -12,8 +12,8 @@ let getFlowers = () =>{
 let addScores = (score, username, quizID) => {
     return fetch(apiHost + "/score", {
         method: 'post',
-        header: {
-            'Content-Type':'application/json'
+        headers: {
+            'content-type':'application/json'
         },
         body: JSON.stringify({score:score, username: username, quizID: quizID})
     });
@@ -28,10 +28,12 @@ let getQuiz = (id) =>{
 
 
 let addCustomers = (username, email, password) =>{
+    let test = JSON.stringify({username: username, email: email, password: password})
+    console.log(test);
     return fetch(apiHost + "/customer", {
         method: 'post',
-        header: {
-            'Content-Type':'application/json'
+        headers: {
+            'content-type':'application/json'
         },
         body: JSON.stringify({username: username, email: email, password: password})
     });
